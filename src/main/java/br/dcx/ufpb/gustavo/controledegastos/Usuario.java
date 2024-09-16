@@ -47,7 +47,15 @@ public class Usuario {
         this.email = email;
     }
 
+    public double calcularTotalGastos(){
+        double total = 0.0;
+        for (GastoPessoal g: this.gastos){
+            total += g.getValor();
+        }
+        return total;
+    }
+
     public String toString(){
-        return "br.dcx.ufpb.gustavo.controledegastos.Usuario: "+ this.nome +" Email: "+ this.email +" Quantidade de gastos: "+ this.gastos.size();
+        return "Usuario: "+ this.nome +" Email: "+ this.email +" Total de gastos: R$"+ calcularTotalGastos();
     }
 }

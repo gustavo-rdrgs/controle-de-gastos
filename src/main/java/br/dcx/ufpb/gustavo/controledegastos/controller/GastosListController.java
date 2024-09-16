@@ -7,22 +7,21 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UsuarioRemoveController implements ActionListener {
+public class GastosListController implements ActionListener {
     private SistemaGastosMap sistema;
     private JFrame janelaPrincipal;
 
-    public UsuarioRemoveController(SistemaGastosMap sistema, JFrame janela) {
+    public GastosListController(SistemaGastosMap sistema, JFrame janela) {
         this.sistema = sistema;
         this.janelaPrincipal = janela;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        String nome = JOptionPane.showInputDialog(janelaPrincipal, "Digite o nome do usuario que deseja remover");
+        String nome = JOptionPane.showInputDialog("Digite o nome do usuario");
         try {
-            sistema.removerUsuario(nome);
-            JOptionPane.showMessageDialog(janelaPrincipal, "Usuario removido com sucesso");
+            String listaDeGastos = sistema.listarGastosUsuario(nome);
+            JOptionPane.showMessageDialog(janelaPrincipal, listaDeGastos);
         } catch (UsuarioNaoEncontradoException ex){
             JOptionPane.showMessageDialog(janelaPrincipal, ex.getMessage());
         }

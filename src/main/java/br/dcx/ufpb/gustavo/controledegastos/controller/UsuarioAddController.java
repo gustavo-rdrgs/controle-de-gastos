@@ -24,6 +24,7 @@ public class UsuarioAddController implements ActionListener {
         Usuario novoUsuario = new Usuario(nome, email);
         try {
             sistema.cadastrarUsuario(novoUsuario);
+            JOptionPane.showMessageDialog(janelaPrincipal, "Novo usuario cadastrado com sucesso");
         } catch (UsuarioJaCadastradoException ex) {
             JOptionPane.showMessageDialog(janelaPrincipal, ex.getMessage());
         }
