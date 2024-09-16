@@ -1,3 +1,5 @@
+package br.dcx.ufpb.gustavo.controledegastos;
+
 public class Data {
     private int dia;
     private int mes;

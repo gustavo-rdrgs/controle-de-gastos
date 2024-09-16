@@ -1,3 +1,5 @@
+package br.dcx.ufpb.gustavo.controledegastos;
+
 import java.util.Objects;
 
 public class GastoPessoal {
@@ -61,6 +63,6 @@ public class GastoPessoal {
     }
 
     public String toString(){
-        return "Descrição: "+ this.descricao +" | Valor: R$"+ this.valor +" | Data: "+ this.data +" | Forma de pagamento: "+ this.formaPagamento;
+        return "Descrição: "+ this.descricao +" | Valor: R$"+ this.valor +" | br.dcx.ufpb.gustavo.controledegastos.Data: "+ this.data +" | Forma de pagamento: "+ this.formaPagamento;
     }
 }

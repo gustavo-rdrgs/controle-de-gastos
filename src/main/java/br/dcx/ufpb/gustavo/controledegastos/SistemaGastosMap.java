@@ -1,3 +1,5 @@
+package br.dcx.ufpb.gustavo.controledegastos;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +43,9 @@ public class SistemaGastosMap implements SistemaGastosInterface{
 
     @Override
     public boolean adicionarGasto(String nomeUsuario, GastoPessoal gasto) throws GastoJaAdicionadoException, UsuarioNaoEncontradoException {
-        Usuario u = buscarUsuario(nomeUsuario);
-        if (!u.getGastos().contains(gasto)){
-            u.getGastos().add(gasto);
+        List<GastoPessoal> gastos = gastosDoUsuario(nomeUsuario);
+        if (gastos.contains(gasto)){
+            gastos.add(gasto);
             return true;
         }
         throw new GastoJaAdicionadoException("Gasto já adicionado ao usuario "+nomeUsuario);
@@ -51,8 +53,7 @@ public class SistemaGastosMap implements SistemaGastosInterface{
 
     @Override
     public String listarGastosUsuario(String nomeUsuario) throws UsuarioNaoEncontradoException {
-        Usuario u = buscarUsuario(nomeUsuario);
-        List<GastoPessoal> gastos = u.getGastos();
+        List<GastoPessoal> gastos = gastosDoUsuario(nomeUsuario);
         if (gastos.isEmpty()){
             return "Nenhum gasto foi cadastrado ainda para o usuario "+ nomeUsuario;
         }
@@ -68,8 +69,7 @@ public class SistemaGastosMap implements SistemaGastosInterface{
 
     @Override
     public GastoPessoal pesquisarGasto(String nomeUsuario, String descricaoGasto) throws UsuarioNaoEncontradoException, GastoNaoEncontradoException {
-        Usuario u = buscarUsuario(nomeUsuario);
-        List<GastoPessoal> gastos = u.getGastos();
+        List<GastoPessoal> gastos = gastosDoUsuario(nomeUsuario);
         for (GastoPessoal g: gastos){
             if (g.getDescricao().equalsIgnoreCase(descricaoGasto)){
                 return g;
@@ -80,11 +80,14 @@ public class SistemaGastosMap implements SistemaGastosInterface{
 
     @Override
     public boolean removerGasto(String nomeUsuario, String descricaoGasto) throws UsuarioNaoEncontradoException, GastoNaoEncontradoException {
-        Usuario u = buscarUsuario(nomeUsuario);
-        List<GastoPessoal> gastos = u.getGastos();
+        List<GastoPessoal> gastos = gastosDoUsuario(nomeUsuario);
         GastoPessoal g = pesquisarGasto(nomeUsuario, descricaoGasto);
         gastos.remove(g);
-
         return true;
+    }
+
+    public List<GastoPessoal> gastosDoUsuario(String nomeUsuario) throws UsuarioNaoEncontradoException {
+        Usuario u = buscarUsuario(nomeUsuario);
+        return u.getGastos();
     }
 }

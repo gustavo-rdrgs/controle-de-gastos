@@ -1,3 +1,5 @@
+package br.dcx.ufpb.gustavo.controledegastos;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -46,6 +48,6 @@ public class Usuario {
     }
 
     public String toString(){
-        return "Usuario: "+ this.nome +" Email: "+ this.email +" Quantidade de gastos: "+ this.gastos.size();
+        return "br.dcx.ufpb.gustavo.controledegastos.Usuario: "+ this.nome +" Email: "+ this.email +" Quantidade de gastos: "+ this.gastos.size();
     }
 }

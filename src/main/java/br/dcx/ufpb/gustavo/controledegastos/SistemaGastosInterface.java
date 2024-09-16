@@ -1,3 +1,5 @@
+package br.dcx.ufpb.gustavo.controledegastos;
+
 public interface SistemaGastosInterface {
 
     public boolean cadastrarUsuario(Usuario usuario)  throws UsuarioJaCadastradoException;
