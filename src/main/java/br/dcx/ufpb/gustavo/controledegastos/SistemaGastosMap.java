@@ -43,7 +43,7 @@ public class SistemaGastosMap implements SistemaGastosInterface{
     @Override
     public boolean adicionarGasto(String nomeUsuario, GastoPessoal gasto) throws GastoJaAdicionadoException, UsuarioNaoEncontradoException {
         List<GastoPessoal> gastos = gastosDoUsuario(nomeUsuario);
-        if (gastos.contains(gasto)){
+        if (!gastos.contains(gasto)){
             gastos.add(gasto);
             return true;
         }
