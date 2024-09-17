@@ -24,12 +24,11 @@ public class SistemaGastosMap implements SistemaGastosInterface{
 
     @Override
     public Usuario buscarUsuario(String nomeUsuario) throws UsuarioNaoEncontradoException {
-        for (Usuario u: usuarios.values()){
-            if (u.getNome().equalsIgnoreCase(nomeUsuario)){
-                return u;
-            }
+        if (usuarios.containsKey(nomeUsuario)){
+            return usuarios.get(nomeUsuario);
+        } else {
+            throw new UsuarioNaoEncontradoException("Usuario não encontrado.");
         }
-        throw new UsuarioNaoEncontradoException("Usuario não encontrado.");
     }
 
     @Override
