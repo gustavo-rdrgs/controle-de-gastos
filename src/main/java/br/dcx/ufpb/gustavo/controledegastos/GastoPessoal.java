@@ -63,6 +63,6 @@ public class GastoPessoal {
     }
 
     public String toString(){
-        return "Descrição: "+ this.descricao +" | Valor: R$"+ this.valor +" | Data: "+ this.data +" | Forma de pagamento: "+ this.formaPagamento;
+        return String.format("Descrição: %s | Valor: R$%.2f | Data: %s | Forma de pagamento: %s", this.descricao, this.valor, this.data.toString(), this.formaPagamento);
     }
 }

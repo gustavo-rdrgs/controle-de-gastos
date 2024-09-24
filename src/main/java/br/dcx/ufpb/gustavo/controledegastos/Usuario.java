@@ -56,6 +56,6 @@ public class Usuario {
     }
 
     public String toString(){
-        return "Usuario: "+ this.nome +" Email: "+ this.email +" Total de gastos: R$"+ calcularTotalGastos();
+        return String.format("Usuário: %s | Email: %s | Total de gastos: R$%.2f", this.nome, this.email, calcularTotalGastos());
     }
 }

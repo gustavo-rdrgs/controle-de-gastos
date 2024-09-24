@@ -14,4 +14,8 @@ public class Data {
     public Data(){
         this(1, 1, 2001);
     }
+
+    public String toString(){
+        return "dia "+ this.dia +" do mês "+ this.mes +" do ano "+ this.ano;
+    }
 }
