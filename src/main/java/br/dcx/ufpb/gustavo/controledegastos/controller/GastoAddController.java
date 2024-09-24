@@ -25,10 +25,9 @@ public class GastoAddController implements ActionListener {
         int dia = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite o dia"));
         int mes = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite o mes"));
         int ano = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite o ano"));
-        Data data = new Data(dia, mes, ano);
 
         String formaDePagamento = JOptionPane.showInputDialog(janelaPrincipal, "Digite a forma de pagamento");
-        GastoPessoal gasto = new GastoPessoal(descricao, valor, data, formaDePagamento);
+        GastoPessoal gasto = new GastoPessoal(descricao, valor, new Data(dia, mes, ano), formaDePagamento);
         try {
             sistema.adicionarGasto(nome, gasto);
             JOptionPane.showMessageDialog(janelaPrincipal, "Novo gasto cadastrado para o usuario "+nome);

@@ -14,7 +14,7 @@ public class SistemaGastosMap implements SistemaGastosInterface{
 
     @Override
     public boolean cadastrarUsuario(Usuario usuario) throws UsuarioJaCadastradoException {
-        if (!usuarios.containsValue(usuario)){
+        if (!usuarios.containsKey(usuario.getNome())){
             usuarios.put(usuario.getNome(), usuario);
             return true;
         } else {
