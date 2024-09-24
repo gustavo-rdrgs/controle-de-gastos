@@ -1,12 +1,13 @@
 package br.dcx.ufpb.gustavo.controledegastos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Usuario {
     private String nome;
     private String email;
-    private ArrayList<GastoPessoal> gastos;
+    private List<GastoPessoal> gastos;
 
     public Usuario(String nome, String email){
         this.nome = nome;
@@ -35,7 +36,7 @@ public class Usuario {
         return email;
     }
 
-    public ArrayList<GastoPessoal> getGastos() {
+    public List<GastoPessoal> getGastos() {
         return gastos;
     }
 
