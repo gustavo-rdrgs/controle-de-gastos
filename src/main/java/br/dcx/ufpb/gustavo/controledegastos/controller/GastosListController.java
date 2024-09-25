@@ -18,8 +18,8 @@ public class GastosListController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String nome = JOptionPane.showInputDialog("Digite o nome do usuario");
         try {
+            String nome = JOptionPane.showInputDialog("Digite o nome do usuario");
             String listaDeGastos = sistema.listarGastosUsuario(nome);
             JOptionPane.showMessageDialog(janelaPrincipal, listaDeGastos);
         } catch (UsuarioNaoEncontradoException ex){
