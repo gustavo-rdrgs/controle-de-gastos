@@ -11,4 +11,5 @@ public interface SistemaGastosInterface {
     public String listarGastosUsuario(String nomeUsuario)   throws UsuarioNaoEncontradoException;
     public GastoPessoal pesquisarGasto(String nomeUsuario, String descricaoGasto)   throws UsuarioNaoEncontradoException, GastoNaoEncontradoException;
     public boolean removerGasto(String nomeUsuario, String descricaoGasto)   throws UsuarioNaoEncontradoException, GastoNaoEncontradoException;
+
 }

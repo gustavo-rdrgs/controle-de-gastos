@@ -1,8 +1,9 @@
 package br.dcx.ufpb.gustavo.controledegastos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class GastoPessoal {
+public class GastoPessoal implements Serializable{
     private String descricao;
     private double valor;
     private Data data;

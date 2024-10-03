@@ -1,13 +1,14 @@
 package br.dcx.ufpb.gustavo.controledegastos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private String nome;
     private String email;
-    private List<GastoPessoal> gastos;
+    private ArrayList<GastoPessoal> gastos;
 
     public Usuario(String nome, String email){
         this.nome = nome;

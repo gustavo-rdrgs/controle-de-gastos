@@ -5,13 +5,37 @@ import br.dcx.ufpb.gustavo.controledegastos.controller.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class SistemaGastosGUI extends JFrame {
-    JLabel linha1, linha2;
-    ImageIcon carteiraImg = new ImageIcon("./imgs/wallet.png");
-    SistemaGastosMap sistema = new SistemaGastosMap();
-    JMenuBar barraDeMenu = new JMenuBar();
+    private JLabel linha1, linha2;
+    private ImageIcon carteiraImg;
+    private SistemaGastosMap sistema;
+    private JMenuBar barraDeMenu;
 
+
+    public SistemaGastosGUI(){
+        sistema = new SistemaGastosMap();
+        carteiraImg = new ImageIcon("./imgs/wallet.png");
+        barraDeMenu = new JMenuBar();
+        definirJanela();
+        definirMenuUsuario();
+        definirMenuGasto();
+        definirMenuSalvar();
+        setJMenuBar(barraDeMenu);
+        try {
+            sistema.recuperarDados();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void main(String [] args){
+        JFrame janela = new SistemaGastosGUI();
+
+        janela.setVisible(true);
+        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
     public ImageIcon imagemCarteiraRedimensionada(){
         Image img = carteiraImg.getImage();
@@ -19,16 +43,28 @@ public class SistemaGastosGUI extends JFrame {
         return new ImageIcon(novaImg);
     }
 
+    public void definirLugar() {
+        Dimension dimensaoTela = Toolkit.getDefaultToolkit().getScreenSize();
+        int larguraTela = dimensaoTela.width;
+        int alturaTela = dimensaoTela.height;
+
+        int x = (larguraTela - getWidth()) / 2;
+        int y = (alturaTela - getHeight()) / 2;
+
+        setLocation(x, y);
+    }
     public void definirJanela(){
         setTitle("Controle de Gastos");
         setSize(800, 600);
-        setLocation(300, 50);
+
+
+        definirLugar();
         setResizable(false);
         setBackground(Color.white);
 
         linha1 = new JLabel("Meu Sistema de Controle de Gastos", JLabel.CENTER);
         linha1.setForeground(Color.BLACK);
-        linha1.setFont(new Font("Serif", Font.BOLD, 24));
+        linha1.setFont(new Font("Raleway", Font.BOLD, 24));
 
         linha2 = new JLabel(imagemCarteiraRedimensionada(), JLabel.CENTER);
         setLayout(new GridLayout(3, 1));
@@ -75,16 +111,16 @@ public class SistemaGastosGUI extends JFrame {
         barraDeMenu.add(menuGasto);
     }
 
-    public SistemaGastosGUI(){
-        definirJanela();
-        definirMenuUsuario();
-        definirMenuGasto();
-        setJMenuBar(barraDeMenu);
+    public void definirMenuSalvar() {
+        JMenu menuSalvar = new JMenu("Salvar");
+        JMenuItem menuSalvarUsuarios = new JMenuItem("Salvar Usuários");
+        menuSalvar.add(menuSalvarUsuarios);
+
+        menuSalvarUsuarios.addActionListener(new SalvarDadosController(sistema, this));
+
+        barraDeMenu.add(menuSalvar);
     }
 
-    public static void main(String [] args){
-        JFrame janela = new SistemaGastosGUI();
-        janela.setVisible(true);
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+
+
 }

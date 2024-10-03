@@ -1,15 +1,21 @@
 package br.dcx.ufpb.gustavo.controledegastos;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SistemaGastosMap implements SistemaGastosInterface{
-    private Map<String, Usuario> usuarios;
+public class SistemaGastosMap implements SistemaGastosInterface {
+    private HashMap<String, Usuario> usuarios;
+
+    private GravadorDeDados gravador;
+
 
     public SistemaGastosMap(){
         this.usuarios = new HashMap<>();
+        this.gravador = new GravadorDeDados();
     }
 
 
@@ -103,5 +109,21 @@ public class SistemaGastosMap implements SistemaGastosInterface{
     public List<GastoPessoal> gastosDoUsuario(String nomeUsuario) throws UsuarioNaoEncontradoException {
         Usuario u = buscarUsuario(nomeUsuario);
         return u.getGastos();
+    }
+
+    public void salvarDados() throws IOException {
+        try {
+            this.gravador.salvarUsuarios(this.usuarios);
+        } catch(IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+    public void recuperarDados() throws IOException {
+        try {
+            this.usuarios = this.gravador.recuperarUsuarios();
+        } catch(IOException ex) {
+            System.err.println(ex.getMessage());
+            this.usuarios = new HashMap<>();
+        }
     }
 }
