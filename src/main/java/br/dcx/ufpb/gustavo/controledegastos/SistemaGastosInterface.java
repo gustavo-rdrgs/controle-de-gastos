@@ -5,6 +5,7 @@ public interface SistemaGastosInterface {
     public boolean cadastrarUsuario(Usuario usuario)  throws UsuarioJaCadastradoException;
     public Usuario buscarUsuario(String nomeUsuario)  throws UsuarioNaoEncontradoException;
     public boolean removerUsuario(String nomeUsuario) throws UsuarioNaoEncontradoException;
+    public String listarUsuarios();
 
     public boolean adicionarGasto(String nomeUsuario, GastoPessoal gasto) throws GastoJaAdicionadoException, UsuarioNaoEncontradoException;
     public String listarGastosUsuario(String nomeUsuario)   throws UsuarioNaoEncontradoException;

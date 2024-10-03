@@ -1,5 +1,6 @@
 package br.dcx.ufpb.gustavo.controledegastos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,20 @@ public class SistemaGastosMap implements SistemaGastosInterface{
             return true;
         }
         throw new UsuarioNaoEncontradoException("Usuario não encontrado");
+    }
+
+    @Override
+    public String listarUsuarios(){
+        if (usuarios.isEmpty()){
+            return "Nenhum usuario foi adicionado ainda.";
+        }
+
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append("Usuarios ").append(":\n");
+        for (Usuario u : usuarios.values()){
+            sb2.append(u.toString()).append("\n");
+        }
+        return sb2.toString();
     }
 
     @Override

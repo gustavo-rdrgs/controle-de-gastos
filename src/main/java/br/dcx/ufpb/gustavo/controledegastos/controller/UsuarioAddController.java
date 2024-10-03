@@ -23,8 +23,12 @@ public class UsuarioAddController implements ActionListener {
         String email = JOptionPane.showInputDialog(janelaPrincipal, "Digite o email do usuario");
         Usuario novoUsuario = new Usuario(nome, email);
         try {
-            sistema.cadastrarUsuario(novoUsuario);
-            JOptionPane.showMessageDialog(janelaPrincipal, "Novo usuario cadastrado com sucesso");
+            if (nome.trim().isEmpty() || email.trim().isEmpty()){
+                JOptionPane.showMessageDialog(janelaPrincipal, "Não pode haver campos vazios. Tente novamente!");
+            } else {
+                sistema.cadastrarUsuario(novoUsuario);
+                JOptionPane.showMessageDialog(janelaPrincipal, "Novo usuario cadastrado com sucesso");
+            }
         } catch (UsuarioJaCadastradoException ex) {
             JOptionPane.showMessageDialog(janelaPrincipal, ex.getMessage());
         }

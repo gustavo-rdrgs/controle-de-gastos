@@ -42,13 +42,16 @@ public class SistemaGastosGUI extends JFrame {
         JMenuItem menuAddUsuario = new JMenuItem("Cadastrar novo Usuario");
         JMenuItem menuRemoveUsuario = new JMenuItem("Remover Usuario");
         JMenuItem menuSearchUsuario = new JMenuItem("Procurar Usuario");
+        JMenuItem menuListUsuario = new JMenuItem("Listar Usuarios");
         menuUsuario.add(menuAddUsuario);
         menuUsuario.add(menuRemoveUsuario);
         menuUsuario.add(menuSearchUsuario);
+        menuUsuario.add(menuListUsuario);
 
         menuAddUsuario.addActionListener(new UsuarioAddController(sistema, this));
         menuRemoveUsuario.addActionListener(new UsuarioRemoveController(sistema, this));
         menuSearchUsuario.addActionListener(new UsuarioSearchController(sistema, this));
+        menuListUsuario.addActionListener(new UsuarioListController(sistema, this));
 
         barraDeMenu.add(menuUsuario);
     }
