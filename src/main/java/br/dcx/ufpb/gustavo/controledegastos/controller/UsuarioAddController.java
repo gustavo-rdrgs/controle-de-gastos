@@ -2,7 +2,7 @@ package br.dcx.ufpb.gustavo.controledegastos.controller;
 
 import br.dcx.ufpb.gustavo.controledegastos.SistemaGastosMap;
 import br.dcx.ufpb.gustavo.controledegastos.Usuario;
-import br.dcx.ufpb.gustavo.controledegastos.UsuarioJaCadastradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioJaCadastradoException;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

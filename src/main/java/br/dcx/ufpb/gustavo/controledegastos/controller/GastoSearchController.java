@@ -1,9 +1,9 @@
 package br.dcx.ufpb.gustavo.controledegastos.controller;
 
-import br.dcx.ufpb.gustavo.controledegastos.GastoNaoEncontradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoNaoEncontradoException;
 import br.dcx.ufpb.gustavo.controledegastos.GastoPessoal;
 import br.dcx.ufpb.gustavo.controledegastos.SistemaGastosMap;
-import br.dcx.ufpb.gustavo.controledegastos.UsuarioNaoEncontradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioNaoEncontradoException;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

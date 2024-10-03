@@ -1,11 +1,13 @@
 package br.dcx.ufpb.gustavo.controledegastos;
 
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoJaAdicionadoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoNaoEncontradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioJaCadastradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioNaoEncontradoException;
+
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SistemaGastosMap implements SistemaGastosInterface {
     private HashMap<String, Usuario> usuarios;

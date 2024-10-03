@@ -1,5 +1,10 @@
 package br.dcx.ufpb.gustavo.controledegastos;
 
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoJaAdicionadoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoNaoEncontradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioJaCadastradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioNaoEncontradoException;
+
 public interface SistemaGastosInterface {
 
     public boolean cadastrarUsuario(Usuario usuario)  throws UsuarioJaCadastradoException;
