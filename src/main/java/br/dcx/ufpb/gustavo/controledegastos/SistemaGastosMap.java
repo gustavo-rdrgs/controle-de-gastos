@@ -113,6 +113,13 @@ public class SistemaGastosMap implements SistemaGastosInterface {
     public String formatarVirgula(String valorString) {
         return valorString.replace(',', '.');
     }
+
+    public GastoPessoal gastoPessoalBuilder(String descricao, double valor, Data data, String formaDePagamento) {
+        return new GastoPessoal(descricao, valor, data, formaDePagamento);
+    }
+    public Usuario usuarioBuilder(String nome, String email) {
+        return new Usuario(nome, email);
+    }
     public void salvarDados() throws IOException {
         try {
             this.gravador.salvarUsuarios(this.usuarios);

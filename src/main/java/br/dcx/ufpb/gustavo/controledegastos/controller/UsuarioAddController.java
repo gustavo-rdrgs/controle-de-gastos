@@ -21,7 +21,7 @@ public class UsuarioAddController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String nome = JOptionPane.showInputDialog(janelaPrincipal, "Digite o nome do usuario");
         String email = JOptionPane.showInputDialog(janelaPrincipal, "Digite o email do usuario");
-        Usuario novoUsuario = new Usuario(nome, email);
+        Usuario novoUsuario = sistema.usuarioBuilder(nome, email);
         try {
             if (nome.trim().isEmpty() || email.trim().isEmpty()){
                 JOptionPane.showMessageDialog(janelaPrincipal, "Não pode haver campos vazios. Tente novamente!");
