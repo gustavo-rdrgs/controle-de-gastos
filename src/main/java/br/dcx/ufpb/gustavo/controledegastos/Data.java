@@ -18,6 +18,7 @@ public class Data implements Serializable {
     }
 
     public String toString(){
-        return "dia "+ this.dia +" do mês "+ this.mes +" do ano "+ this.ano;
+        //return "dia "+ this.dia +" do mês "+ this.mes +" do ano "+ this.ano;
+        return String.format("%02d/%02d/%d", dia, mes, ano);
     }
 }
