@@ -5,6 +5,8 @@ import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoNaoEncontradoExcepti
 import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioJaCadastradoException;
 import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioNaoEncontradoException;
 
+import java.io.IOException;
+
 public interface SistemaGastosInterface {
 
     public boolean cadastrarUsuario(Usuario usuario)  throws UsuarioJaCadastradoException;
@@ -17,4 +19,6 @@ public interface SistemaGastosInterface {
     public GastoPessoal pesquisarGasto(String nomeUsuario, String descricaoGasto)   throws UsuarioNaoEncontradoException, GastoNaoEncontradoException;
     public boolean removerGasto(String nomeUsuario, String descricaoGasto)   throws UsuarioNaoEncontradoException, GastoNaoEncontradoException;
 
+    public void salvarDados() throws IOException;
+    public void recuperarDados() throws IOException;
 }

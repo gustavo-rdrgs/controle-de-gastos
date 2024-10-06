@@ -24,20 +24,20 @@ public class GastoAddController implements ActionListener {
             sistema.buscarUsuario(nome);
 
             String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite a descrição");
-            double valor = Double.parseDouble(JOptionPane.showInputDialog(janelaPrincipal, "Digite o valor do gasto"));
-
+            String valorString = JOptionPane.showInputDialog(janelaPrincipal, "Digite o valor do gasto");
+            double valor = Double.parseDouble(sistema.formatarVirgula(valorString));
             JOptionPane.showMessageDialog(janelaPrincipal, "Prossiga com a data do gasto");
             int dia = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite o dia (dd)"));
             int mes = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite o mes (mm)"));
             int ano = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite o ano (aaaa)"));
 
-            if (dia > 31 || mes > 12){
+            if (dia > 31 || dia <= 0 || mes > 12 || mes <= 0 || ano <= 0){
                 JOptionPane.showMessageDialog(janelaPrincipal, "Insira uma data válida.");
             } else{
                 boolean formaValida = false;
                 String formaDePagamento = JOptionPane.showInputDialog(janelaPrincipal, "Digite a forma de pagamento (Pix, Boleto, Débito, Crédito, Dinheiro)");
                 for (Pagamentos p : Pagamentos.values()){
-                    if (p.name().equals(formaDePagamento)) {
+                    if (p.name().equalsIgnoreCase(formaDePagamento)) {
                         formaValida = true;
                         break;
                     }

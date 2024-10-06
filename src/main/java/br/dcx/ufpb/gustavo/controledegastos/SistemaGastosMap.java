@@ -8,6 +8,7 @@ import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioNaoEncontradoExcep
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SistemaGastosMap implements SistemaGastosInterface {
     private HashMap<String, Usuario> usuarios;
@@ -55,12 +56,10 @@ public class SistemaGastosMap implements SistemaGastosInterface {
             return "Nenhum usuario foi adicionado ainda.";
         }
 
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append("Usuarios ").append(":\n");
-        for (Usuario u : usuarios.values()){
-            sb2.append(u.toString()).append("\n");
-        }
-        return sb2.toString();
+        return usuarios.values()
+                .stream()
+                .map(Usuario::toString)
+                .collect(Collectors.joining("\n"));
     }
 
     @Override
@@ -91,13 +90,11 @@ public class SistemaGastosMap implements SistemaGastosInterface {
 
     @Override
     public GastoPessoal pesquisarGasto(String nomeUsuario, String descricaoGasto) throws UsuarioNaoEncontradoException, GastoNaoEncontradoException {
-        List<GastoPessoal> gastos = gastosDoUsuario(nomeUsuario);
-        for (GastoPessoal g: gastos){
-            if (g.getDescricao().equalsIgnoreCase(descricaoGasto)){
-                return g;
-            }
-        }
-        throw new GastoNaoEncontradoException("Gasto não encontrado.");
+        return gastosDoUsuario(nomeUsuario)
+                .stream()
+                .filter(g -> g.getDescricao().equalsIgnoreCase(descricaoGasto))
+                .findFirst()
+                .orElseThrow(() -> new GastoNaoEncontradoException("Gasto não encontrado."));
     }
 
     @Override
@@ -113,6 +110,9 @@ public class SistemaGastosMap implements SistemaGastosInterface {
         return u.getGastos();
     }
 
+    public String formatarVirgula(String valorString) {
+        return valorString.replace(',', '.');
+    }
     public void salvarDados() throws IOException {
         try {
             this.gravador.salvarUsuarios(this.usuarios);
