@@ -116,7 +116,14 @@ public class SistemaGastosGUI extends JFrame {
         JMenuItem menuSalvarUsuarios = new JMenuItem("Salvar Usuários");
         menuSalvar.add(menuSalvarUsuarios);
 
-        menuSalvarUsuarios.addActionListener(new SalvarDadosController(sistema, this));
+        menuSalvarUsuarios.addActionListener(e -> {
+            try {
+                sistema.salvarDados();
+                JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!", "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Dados não puderam ser salvos", "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
 
         barraDeMenu.add(menuSalvar);
     }
