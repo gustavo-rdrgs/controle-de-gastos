@@ -37,7 +37,7 @@ public class Usuario implements Serializable {
         return email;
     }
 
-    public List<GastoPessoal> getGastos() {
+    public ArrayList<GastoPessoal> getGastos() {
         return gastos;
     }
 
