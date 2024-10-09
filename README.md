@@ -14,3 +14,6 @@ O sistema cadastra um usuário com o nome e o email e depois adiciona seus gasto
 9. Salvar Dados
 10. Recuperar Dados
 
+
+<img src="https://i.imgur.com/kmVLh2a.png" width="80%" align="left"/>
+
