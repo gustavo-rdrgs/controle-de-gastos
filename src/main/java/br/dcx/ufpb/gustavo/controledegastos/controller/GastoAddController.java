@@ -35,7 +35,9 @@ public class GastoAddController implements ActionListener {
                 JOptionPane.showMessageDialog(janelaPrincipal, "Insira uma data válida.");
             } else{
                 boolean formaValida = false;
-                String formaDePagamento = JOptionPane.showInputDialog(janelaPrincipal, "Digite a forma de pagamento (Pix, Boleto, Débito, Crédito, Dinheiro)");
+                String formaDePagamento = JOptionPane.showInputDialog(janelaPrincipal, "Digite a forma de pagamento (PIX, BOLETO, DÉBITO, CRÉDITO, DINHEIRO)").toUpperCase();
+                Pagamentos pag;
+                pag = Pagamentos.valueOf(formaDePagamento);
                 for (Pagamentos p : Pagamentos.values()){
                     if (p.name().equalsIgnoreCase(formaDePagamento)) {
                         formaValida = true;
@@ -46,7 +48,7 @@ public class GastoAddController implements ActionListener {
                     JOptionPane.showMessageDialog(janelaPrincipal, "Forma de pagamento inválida.");
                     return;
                 }
-                GastoPessoal gasto = sistema.gastoPessoalBuilder(descricao, valor, new Data(dia, mes, ano), formaDePagamento);
+                GastoPessoal gasto = sistema.gastoPessoalBuilder(descricao, valor, new Data(dia, mes, ano), pag);
 
                 sistema.adicionarGasto(nome, gasto);
                 JOptionPane.showMessageDialog(janelaPrincipal, "Novo gasto cadastrado para o usuario "+nome);

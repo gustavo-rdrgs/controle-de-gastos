@@ -16,6 +16,7 @@ public class Usuario implements Serializable {
         this.gastos = new ArrayList<>();
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

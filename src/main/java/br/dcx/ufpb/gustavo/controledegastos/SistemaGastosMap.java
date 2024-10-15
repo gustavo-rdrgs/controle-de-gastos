@@ -7,6 +7,7 @@ import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioNaoEncontradoExcep
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ public class SistemaGastosMap implements SistemaGastosInterface {
 
 
     public SistemaGastosMap(){
-        this.usuarios = new HashMap<>();
+        this.usuarios = new LinkedHashMap<>();
         this.gravador = new GravadorDeDados();
     }
 
@@ -114,8 +115,8 @@ public class SistemaGastosMap implements SistemaGastosInterface {
         return valorString.replace(',', '.');
     }
 
-    public GastoPessoal gastoPessoalBuilder(String descricao, double valor, Data data, String formaDePagamento) {
-        return new GastoPessoal(descricao, valor, data, formaDePagamento);
+    public GastoPessoal gastoPessoalBuilder(String descricao, double valor, Data data, Pagamentos pagamentos) {
+        return new GastoPessoal(descricao, valor, data, pagamentos);
     }
     public Usuario usuarioBuilder(String nome, String email) {
         return new Usuario(nome, email);
