@@ -111,16 +111,22 @@ public class SistemaGastosMap implements SistemaGastosInterface {
         return u.getGastos();
     }
 
+
+    //MÉTODOS A PARTE
+
     public String formatarVirgula(String valorString) {
         return valorString.replace(',', '.');
     }
 
+
     public GastoPessoal gastoPessoalBuilder(String descricao, double valor, Data data, Pagamentos pagamentos) {
         return new GastoPessoal(descricao, valor, data, pagamentos);
     }
+
     public Usuario usuarioBuilder(String nome, String email) {
         return new Usuario(nome, email);
     }
+
     public void salvarDados() throws IOException {
         try {
             this.gravador.salvarUsuarios(this.usuarios);
@@ -128,6 +134,7 @@ public class SistemaGastosMap implements SistemaGastosInterface {
             System.err.println(ex.getMessage());
         }
     }
+
     public void recuperarDados() throws IOException {
         try {
             this.usuarios = this.gravador.recuperarUsuarios();

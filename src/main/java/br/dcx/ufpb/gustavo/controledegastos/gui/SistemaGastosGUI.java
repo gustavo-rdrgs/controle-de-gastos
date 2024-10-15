@@ -5,6 +5,8 @@ import br.dcx.ufpb.gustavo.controledegastos.controller.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class SistemaGastosGUI extends JFrame {
@@ -21,7 +23,6 @@ public class SistemaGastosGUI extends JFrame {
         definirJanela();
         definirMenuUsuario();
         definirMenuGasto();
-        definirMenuSalvar();
         setJMenuBar(barraDeMenu);
         try {
             sistema.recuperarDados();
@@ -31,10 +32,20 @@ public class SistemaGastosGUI extends JFrame {
     }
 
     public static void main(String [] args){
-        JFrame janela = new SistemaGastosGUI();
+        SistemaGastosGUI janela = new SistemaGastosGUI();
 
         janela.setVisible(true);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Adiciona um listener para a janela
+        janela.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Aqui você pode chamar o método para salvar os dados
+                janela.salvarDados();
+                System.exit(0); // Encerra o programa
+            }
+        });
     }
 
     public ImageIcon imagemCarteiraRedimensionada(){
@@ -111,21 +122,14 @@ public class SistemaGastosGUI extends JFrame {
         barraDeMenu.add(menuGasto);
     }
 
-    public void definirMenuSalvar() {
-        JMenu menuSalvar = new JMenu("Salvar");
-        JMenuItem menuSalvarUsuarios = new JMenuItem("Salvar Usuários");
-        menuSalvar.add(menuSalvarUsuarios);
 
-        menuSalvarUsuarios.addActionListener(e -> {
-            try {
-                sistema.salvarDados();
-                JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!", "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Dados não puderam ser salvos", "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-
-        barraDeMenu.add(menuSalvar);
+    public void salvarDados(){
+        try {
+            sistema.salvarDados();
+            JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!", "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Dados não puderam ser salvos", "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
 
