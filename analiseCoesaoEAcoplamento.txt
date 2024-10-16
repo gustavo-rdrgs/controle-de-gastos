@@ -1,0 +1,21 @@
+O sistema está bem acoplado e bem coeso na nossa opinião. 
+A construção das classes foi pensada desde antes para que
+houvesse uma comunicação unidirecional entre as classes,
+de forma que não ficasse um emaranhado no diagrama UML.
+Cada classe é bem responsável pela sua tarefa, a classe 
+Data é responsável apenas pela Data, a classe GastoPessoal
+operaciona métodos que são relacionados com o Gasto, e assim
+por diante. O que pode ser melhorado no nosso código é a 
+questão de funcionalidade, pois procuramos evitar ao máximo os
+Code Smells de forma que com novas implementações, ele não
+surgisse. Um exemplo comum no nosso código é o Builder Pattern que
+usamos para evitar a comunicação direta com as classes e a 
+construção de métodos para linhas de códigos que se repetem
+e poderiam ser reutilizados. O ponto positivo de fazer isso é
+que se queremos alterar algo relacionado a essa linha de
+código, não precisamos alterar em todos os métodos em que
+essa linha de código está presente, pois agora temos um método
+exclusivo para ela. Estamos trabalhando para ver possíveis 
+melhorias na construção do design de sistemas e evitar possíveis
+quebras de código com uma pequena alteração, ou seja, evitar uma 
+Cirurgia com Rifle.
