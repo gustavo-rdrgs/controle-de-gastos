@@ -1,7 +1,5 @@
 import br.dcx.ufpb.gustavo.controledegastos.*;
-import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoJaAdicionadoException;
-import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioJaCadastradoException;
-import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioNaoEncontradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
