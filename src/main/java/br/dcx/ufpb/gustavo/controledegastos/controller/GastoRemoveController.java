@@ -24,7 +24,6 @@ public class GastoRemoveController implements ActionListener {
             sistema.buscarUsuario(nome);
             String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite o gasto");
             sistema.removerGasto(nome, descricao);
-            JOptionPane.showMessageDialog(janelaPrincipal, "Gasto removido com sucesso");
         } catch (UsuarioNaoEncontradoException | GastoNaoEncontradoException ex){
             JOptionPane.showMessageDialog(janelaPrincipal, ex.getMessage());
         }

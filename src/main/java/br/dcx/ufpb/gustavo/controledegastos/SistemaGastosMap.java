@@ -1,11 +1,10 @@
 package br.dcx.ufpb.gustavo.controledegastos;
 
-import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoJaAdicionadoException;
-import br.dcx.ufpb.gustavo.controledegastos.exceptions.GastoNaoEncontradoException;
-import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioJaCadastradoException;
-import br.dcx.ufpb.gustavo.controledegastos.exceptions.UsuarioNaoEncontradoException;
+import br.dcx.ufpb.gustavo.controledegastos.exceptions.*;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -99,10 +98,47 @@ public class SistemaGastosMap implements SistemaGastosInterface {
     }
 
     @Override
-    public boolean removerGasto(String nomeUsuario, String descricaoGasto) throws UsuarioNaoEncontradoException, GastoNaoEncontradoException {
+    public boolean removerGasto(String nomeUsuario, String descricaoGasto) throws UsuarioNaoEncontradoException, GastoNaoEncontradoException{
         List<GastoPessoal> gastos = gastosDoUsuario(nomeUsuario);
-        GastoPessoal g = pesquisarGasto(nomeUsuario, descricaoGasto);
-        gastos.remove(g);
+
+
+        List<GastoPessoal> gastosComAMesmaDescricao = new ArrayList<>();
+        for (GastoPessoal gastoPessoal : gastos){
+            if (gastoPessoal.getDescricao().equals(descricaoGasto)){
+                gastosComAMesmaDescricao.add(gastoPessoal);
+            }
+        }
+
+
+        if (gastosComAMesmaDescricao.size() > 1){
+            StringBuilder mensagem = new StringBuilder("Selecione o número do gasto que deseja remover:\n");
+
+            int index = 1;
+            for (GastoPessoal gasto : gastosComAMesmaDescricao){
+                mensagem.append(index).append(". Descrição: ").append(gasto.getDescricao())
+                        .append(". Data: ").append(gasto.getData()).append(", Valor: R$ ").append(gasto.getValor())
+                        .append("\n");
+                index++;
+            }
+
+            String opcao = JOptionPane.showInputDialog(mensagem.toString()).trim();
+
+            if (!opcao.isEmpty()){
+                int escolha = Integer.parseInt(opcao);
+                if (escolha >= 1 && escolha <= gastosComAMesmaDescricao.size()) {
+                    gastos.remove(gastosComAMesmaDescricao.get(escolha - 1));
+                    JOptionPane.showMessageDialog(null, "Gasto removido com sucesso!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Entrada inválida.");
+            }
+
+
+        } else {
+            GastoPessoal g = pesquisarGasto(nomeUsuario, descricaoGasto);
+            gastos.remove(g);
+            JOptionPane.showMessageDialog(null, "Gasto removido com sucesso!");
+        }
         return true;
     }
 
