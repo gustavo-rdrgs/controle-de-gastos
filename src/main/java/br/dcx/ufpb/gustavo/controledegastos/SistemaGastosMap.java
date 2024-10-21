@@ -90,11 +90,58 @@ public class SistemaGastosMap implements SistemaGastosInterface {
 
     @Override
     public GastoPessoal pesquisarGasto(String nomeUsuario, String descricaoGasto) throws UsuarioNaoEncontradoException, GastoNaoEncontradoException {
-        return gastosDoUsuario(nomeUsuario)
+        List<GastoPessoal> gastos = gastosDoUsuario(nomeUsuario);
+
+        List<GastoPessoal> gastosComAMesmaDescricao = new ArrayList<>();
+        for(GastoPessoal gastoPessoal : gastos){
+            if (gastoPessoal.getDescricao().equalsIgnoreCase(descricaoGasto)){
+                gastosComAMesmaDescricao.add(gastoPessoal);
+            }
+        }
+
+        if (gastosComAMesmaDescricao.size() > 1){
+            StringBuilder mensagem = new StringBuilder("Selecione o número do gasto que deseja pesquisar:\n");
+
+            int index = 1;
+            for (GastoPessoal gasto : gastosComAMesmaDescricao){
+                mensagem.append(index).append(". Descrição: ").append(gasto.getDescricao())
+                        .append(". Data: ").append(gasto.getData()).append("\n");
+                index++;
+            }
+
+            String opcao = JOptionPane.showInputDialog(mensagem.toString()).trim();
+
+            if (!opcao.isEmpty()){
+                int escolha = Integer.parseInt(opcao);
+                if (escolha >= 1 && escolha <= gastosComAMesmaDescricao.size()) {
+                    JOptionPane.showMessageDialog(null,gastosComAMesmaDescricao.get(escolha - 1));
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Entrada inválida.");
+            }
+
+
+        } else {
+            return gastosDoUsuario(nomeUsuario)
                 .stream()
                 .filter(g -> g.getDescricao().equalsIgnoreCase(descricaoGasto))
                 .findFirst()
                 .orElseThrow(() -> new GastoNaoEncontradoException("Gasto não encontrado."));
+        }
+
+
+
+
+
+
+
+
+//        return gastosDoUsuario(nomeUsuario)
+//                .stream()
+//                .filter(g -> g.getDescricao().equalsIgnoreCase(descricaoGasto))
+//                .findFirst()
+//                .orElseThrow(() -> new GastoNaoEncontradoException("Gasto não encontrado."));
+        return null;
     }
 
     @Override
