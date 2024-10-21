@@ -13,13 +13,14 @@ public class TestSistemaControleDeGastos {
     SistemaGastosMap sistema;
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws UsuarioJaCadastradoException{
         this.sistema = new SistemaGastosMap();
     }
 
 
+
     @Test
-    public void testRemoverECadastrarUsuario() throws UsuarioNaoEncontradoException, UsuarioJaCadastradoException {
+    public void testCadastrarUsuario() throws UsuarioJaCadastradoException {
         Usuario u1 = new Usuario("Kaua", "kaua.vidal@dcx.ufpb.br");
 
 
@@ -30,9 +31,16 @@ public class TestSistemaControleDeGastos {
             fail("Não deveria falhar");
         }
 
+    }
+
+    @Test
+    public void testRemoverUsuario() throws UsuarioNaoEncontradoException, UsuarioJaCadastradoException{
+
+        sistema.cadastrarUsuario(new Usuario("User1", "user1@example.com"));
+
 
         try {
-            boolean removeu = sistema.removerUsuario("Kaua");
+            boolean removeu = sistema.removerUsuario("User1");
             assertTrue(removeu);
         } catch (UsuarioNaoEncontradoException e){
             fail ("Não deveria lançar exceção");
@@ -50,13 +58,13 @@ public class TestSistemaControleDeGastos {
     }
 
     @Test
-    public void testListarUsuariosComNenhumUsuario() {
+    public void testListarUsuariosComNenhumUsuarioCadastrado() {
         String resultado = sistema.listarUsuarios();
         assertEquals("Nenhum usuario foi adicionado ainda.", resultado);
     }
 
     @Test
-    public void testListarUsuariosComUsuarios() {
+    public void testListarUsuariosComUsuariosCadastrados() {
         try {
             // Cadastro de usuários
             sistema.cadastrarUsuario(new Usuario("User1", "user1@example.com"));
