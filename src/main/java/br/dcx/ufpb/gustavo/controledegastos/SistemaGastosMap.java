@@ -114,7 +114,8 @@ public class SistemaGastosMap implements SistemaGastosInterface {
             if (!opcao.isEmpty()){
                 int escolha = Integer.parseInt(opcao);
                 if (escolha >= 1 && escolha <= gastosComAMesmaDescricao.size()) {
-                    JOptionPane.showMessageDialog(null,gastosComAMesmaDescricao.get(escolha - 1));
+                    GastoPessoal gasto = gastosComAMesmaDescricao.get(escolha - 1);
+                    return gasto;
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Entrada inválida.");

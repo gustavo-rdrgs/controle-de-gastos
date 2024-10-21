@@ -25,7 +25,7 @@ public class GastoSearchController implements ActionListener {
             sistema.buscarUsuario(nome);
             String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite o gasto");
             GastoPessoal gasto = sistema.pesquisarGasto(nome, descricao);
-            JOptionPane.showMessageDialog(janelaPrincipal, gasto);
+            JOptionPane.showMessageDialog(janelaPrincipal, gasto.toString());
         } catch (UsuarioNaoEncontradoException | GastoNaoEncontradoException ex){
             JOptionPane.showMessageDialog(janelaPrincipal, ex.getMessage());
         }
