@@ -129,19 +129,6 @@ public class SistemaGastosMap implements SistemaGastosInterface {
                 .findFirst()
                 .orElseThrow(() -> new GastoNaoEncontradoException("Gasto não encontrado."));
         }
-
-
-
-
-
-
-
-
-//        return gastosDoUsuario(nomeUsuario)
-//                .stream()
-//                .filter(g -> g.getDescricao().equalsIgnoreCase(descricaoGasto))
-//                .findFirst()
-//                .orElseThrow(() -> new GastoNaoEncontradoException("Gasto não encontrado."));
         return null;
     }
 
