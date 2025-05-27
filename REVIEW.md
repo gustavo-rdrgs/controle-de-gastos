@@ -5,11 +5,11 @@
 1. [✅ Boas Práticas Gerais](#-1-boas-práticas-gerais)
 2. [🧠 Avaliação dos Controllers](#-2-controllers--avaliação-individual)
 3. [🧩 Classe GUI](#-3-classe-gui--sistemagastosgui)
-4. [♻️ Refatoração por Classe](#-4-análise-detalhada-e-sugestões-de-refatoração-por-classe)
-5. [🎨Design Possível: Singleton](#5)
-6. [🤔 Análise da Classe de Testes](#6)
-7. [🧼 Sugestões Adicionais de Melhoria](#7)
-8. [🎯 Resumo Final](#8)
+4. [♻️ Refatoração por Classe](#%EF%B8%8F-4-análise-detalhada-e-sugestões-de-refatoração-por-classe)
+5. [🎨Design Possível: Singleton](#-5-design-possível-singleton-para-sistemagastosmap-ou-service-layer)
+6. [🤔 Análise da Classe de Testes](#-6-análise-da-classe-de-testes-testsistemacontroledegastos)
+7. [🧼 Sugestões Adicionais de Melhoria](#-7-sugestões-adicionais-de-melhoria)
+8. [🎯 Resumo Final](#-8-resumo-final)
 
 --- 
 
